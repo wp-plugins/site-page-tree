@@ -5,7 +5,7 @@ Author URI: http://ecs.mit.edu/
 Tags: page tree, subpage, site navigation, collapsible, expandable, menu
 Requires at least: 3.1
 Tested up to: 3.1
-Stable tag: 0.1
+Stable tag: 0.2
 
 Sidebar widget displays a navigable tree of pages and subpages with expand/collapse capability. 
 
@@ -41,5 +41,9 @@ Our answer here!
 
 == Changelog ==
 
-= 1.0 =
+= 0.2 =
+* removed addslashes() from line 185 that was causing post titles to display escaped 
+
+= 0.1 =
 * Initial public release.
+

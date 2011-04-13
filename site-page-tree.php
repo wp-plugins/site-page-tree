@@ -182,7 +182,7 @@ class Site_Page_Tree extends WP_Widget {
 			// convert wp descendants object to an array of arrays of IDs and post titles
 			$descendants = array();
 			foreach($wp_descendants_obj as $wp_descendant) {
-				$descendants[] = array($wp_descendant->ID, addslashes($wp_descendant->post_title), get_permalink($wp_descendant->ID));
+				$descendants[] = array($wp_descendant->ID, $wp_descendant->post_title, get_permalink($wp_descendant->ID));
 			} // foreach wp_descedants_obj
 	
 			// If it has descendants, append them to the node_data.

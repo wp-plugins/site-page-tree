@@ -87,7 +87,7 @@ class Site_Page_Tree extends WP_Widget {
 		$icon_folder = apply_filters( 'site_page_tree_icons_url',  WP_PLUGIN_URL . '/site-page-tree/icons/' );
 	
 		echo "
-	<div id='ptDiv'></div>
+	<div id='ptDiv'>
 	<script type='text/javascript'>
 	
 	var TREE_TPL = {
@@ -154,7 +154,7 @@ class Site_Page_Tree extends WP_Widget {
 				break;
 			}
 		}
-		echo "</script>";
+		echo "</script></div>";
 		
 	} // page_tree_display
 	

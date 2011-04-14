@@ -3,7 +3,7 @@
 Plugin Name: Site Page Tree
 Description: Adds collapsible tree of pages and sub-pages as navigable hyperlinks
 Author: Brett Mellor, mitcho (Michael Yoshitaka Erlewine)
-Version: 0.1
+Version: 0.2
 Author URI: http://ecs.mit.edu
 */
 

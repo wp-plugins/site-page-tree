@@ -1,6 +1,6 @@
 === Site Page Tree ===
 Contributors: bmellor, mitchoyoshitaka
-Author: Brett Mellor, mitcho (Michael Yoshitaka Erlewine
+Author: Brett Mellor, mitcho (Michael Yoshitaka Erlewine)
 Author URI: http://ecs.mit.edu/
 Tags: page tree, subpage, site navigation, collapsible, expandable, menu
 Requires at least: 3.1

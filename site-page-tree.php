@@ -3,7 +3,7 @@
 Plugin Name: Site Page Tree
 Description: Adds collapsible tree of pages and sub-pages as navigable hyperlinks
 Author: Brett Mellor, mitcho (Michael Yoshitaka Erlewine)
-Version: 0.1
+Version: 0.2
 Author URI: http://ecs.mit.edu
 */
 
@@ -87,7 +87,7 @@ class Site_Page_Tree extends WP_Widget {
 		$icon_folder = apply_filters( 'site_page_tree_icons_url',  WP_PLUGIN_URL . '/site-page-tree/icons/' );
 	
 		echo "
-	<div id='ptDiv'></div>
+	<div id='ptDiv'>
 	<script type='text/javascript'>
 	
 	var TREE_TPL = {
@@ -154,7 +154,7 @@ class Site_Page_Tree extends WP_Widget {
 				break;
 			}
 		}
-		echo "</script>";
+		echo "</script></div>";
 		
 	} // page_tree_display
 	
@@ -177,7 +177,7 @@ class Site_Page_Tree extends WP_Widget {
 			$node_data = array($ancestor[1], $ancestor[2]);
 	
 			// get all of the descendants for each ancestor
-			$wp_descendants_obj = get_posts(array('numberposts' => -1, 'orderby' => 'title', 'order'=> 'ASC', 'post_type' => 'page', 'post_status' => 'publish', post_parent => $ancestor[0]));
+			$wp_descendants_obj = get_posts(array('numberposts' => -1, 'orderby' => 'menu_order', 'order'=> 'ASC', 'post_type' => 'page', 'post_status' => 'publish', post_parent => $ancestor[0]));
 	
 			// convert wp descendants object to an array of arrays of IDs and post titles
 			$descendants = array();

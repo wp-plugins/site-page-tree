@@ -43,6 +43,7 @@ Our answer here!
 
 = 0.2 =
 * removed addslashes() from line 185 that was causing post titles to display escaped 
+* list pages by menu_order field instead of alphabetical
 
 = 0.1 =
 * Initial public release.

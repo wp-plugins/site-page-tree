@@ -63,7 +63,7 @@ class Site_Page_Tree extends WP_Widget {
 		// not sure why this has to be in an array with a redundant wrapper, but... okay... - mitcho
 		$tree_data = apply_filters( 'site_page_tree_data', $tree_data );
 	
-		echo "<span class='site-page-tree-header'>
+		echo "<span id='site-page-tree-header'>
 			<a href='#' onclick=\"ptSlider('open'); return false;\">" . __("Show", "site-page-tree") . "</a> | <a href='#' onclick=\"ptSlider('close'); return false;\">" . __("Hide", "site-page-tree") . "</a> |
 			<a href='#' onclick=\"expand_all('my_tree'); return false;\">" . __("Expand all", "site-page-tree") . "</a> | <a href='#' onclick=\"expand_all('my_tree', true); return false;\">" . __("Collapse all", "site-page-tree") . "</a></span>
 			";

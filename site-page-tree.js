@@ -130,9 +130,9 @@ function item_init () {
 	}
 
 	return '<table cellpadding="0" cellspacing="0" border="0"><tr><td nowrap>' + (this.n_depth ? a_offset.join('') + (this.a_children.length
-		? '<a class="ptLink" href="javascript: trees[' + this.o_root.n_id + '].toggle(' + this.n_id + ');"><img src="' + this.get_icon(true) + '" border="0" align="absbottom" name="j_img' + this.o_root.n_id + '_' + this.n_id + '"></a>'
+		? '<a class="site-page-tree-link" href="javascript: trees[' + this.o_root.n_id + '].toggle(' + this.n_id + ');"><img src="' + this.get_icon(true) + '" border="0" align="absbottom" name="j_img' + this.o_root.n_id + '_' + this.n_id + '"></a>'
 		: '<img src="' + this.get_icon(true) + '" border="0" align="absbottom">') : '') 
-		+ '<a class="ptLink" title="' + this.a_config[0] + '" href="' + this.a_config[1] + '" target="' + this.o_root.a_tpl['target'] + '" class="t' + this.o_root.n_id + 'i" id="i_txt' + this.o_root.n_id + '_' + this.n_id + '"><img src="' + this.get_icon() + '" border="0" align="absbottom" name="i_img' + this.o_root.n_id + '_' + this.n_id + '" class="t' + this.o_root.n_id + 'im">' + this.a_config[0] + '</a></td></tr></table>' + (this.a_children.length ? '<div id="i_div' + this.o_root.n_id + '_' + this.n_id + '" style="display:none"></div>' : '');
+		+ '<a class="site-page-tree-link" title="' + this.a_config[0] + '" href="' + this.a_config[1] + '" target="' + this.o_root.a_tpl['target'] + '" class="t' + this.o_root.n_id + 'i" id="i_txt' + this.o_root.n_id + '_' + this.n_id + '"><img src="' + this.get_icon() + '" border="0" align="absbottom" name="i_img' + this.o_root.n_id + '_' + this.n_id + '" class="t' + this.o_root.n_id + 'im">' + this.a_config[0] + '</a></td></tr></table>' + (this.a_children.length ? '<div id="i_div' + this.o_root.n_id + '_' + this.n_id + '" style="display:none"></div>' : '');
 
 
 }
@@ -149,7 +149,7 @@ function expand_all(theTree, theDirective) {
 	} 
 
 function ptSlider(way) {
-	divHeight = document.getElementById('ptDiv').offsetHeight;
+	divHeight = document.getElementById('site-page-tree').offsetHeight;
 	if(way=='close')	timer = setInterval("ptClose()",10);
 	else 			timer = setInterval("ptOpen()",10);
 	}
@@ -158,7 +158,7 @@ function ptClose() {
 	if(divHeight>0) {
 		divHeight = divHeight - 15;
 		if ( divHeight < 0 ) divHeight=0;
-		document.getElementById('ptDiv').style.height = divHeight+'px';
+		document.getElementById('site-page-tree').style.height = divHeight+'px';
 		}
 	else {
 		clearInterval(timer);
@@ -172,11 +172,11 @@ function ptOpen() {
 	if(divHeight < testHeight) {
 		divHeight = divHeight + 15;
 		if ( divHeight > testHeight ) divHeight=testHeight;
-		document.getElementById('ptDiv').style.height = divHeight+'px';
+		document.getElementById('site-page-tree').style.height = divHeight+'px';
 		}
 	else {
 		clearInterval(timer);
-		document.getElementById('ptDiv').style.height='';
+		document.getElementById('site-page-tree').style.height='';
 		}
 	}
 

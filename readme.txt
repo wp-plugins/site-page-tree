@@ -1,11 +1,11 @@
 === Site Page Tree ===
 Contributors: bmellor, mitchoyoshitaka
-Author: Brett Mellor, mitcho (Michael Yoshitaka Erlewine)
+Author: Brett Mellor, mitcho (Michael Yoshitaka Erlewine
 Author URI: http://ecs.mit.edu/
 Tags: page tree, subpage, site navigation, collapsible, expandable, menu
 Requires at least: 3.1
 Tested up to: 3.1
-Stable tag: 0.2
+Stable tag: 0.3
 
 Sidebar widget displays a navigable tree of pages and subpages with expand/collapse capability. 
 
@@ -41,8 +41,12 @@ Our answer here!
 
 == Changelog ==
 
+= 0.3 =
+* removed some hard coded styling and put in some classes instead
+
 = 0.2 =
 * removed addslashes() from line 185 that was causing post titles to display escaped 
+* list pages by menu_order field instead of alphabetical
 
 = 0.1 =
 * Initial public release.

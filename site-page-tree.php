@@ -3,7 +3,7 @@
 Plugin Name: Site Page Tree
 Description: Adds collapsible tree of pages and sub-pages as navigable hyperlinks
 Author: Brett Mellor, mitcho (Michael Yoshitaka Erlewine)
-Version: 0.2
+Version: 0.3
 Author URI: http://ecs.mit.edu
 */
 
@@ -63,31 +63,15 @@ class Site_Page_Tree extends WP_Widget {
 		// not sure why this has to be in an array with a redundant wrapper, but... okay... - mitcho
 		$tree_data = apply_filters( 'site_page_tree_data', $tree_data );
 	
-		echo "<span style='font-size:10px; display:block; width:220px;'>
+		echo "<span class='site-page-tree-header'>
 			<a href='#' onclick=\"ptSlider('open'); return false;\">" . __("Show", "site-page-tree") . "</a> | <a href='#' onclick=\"ptSlider('close'); return false;\">" . __("Hide", "site-page-tree") . "</a> |
 			<a href='#' onclick=\"expand_all('my_tree'); return false;\">" . __("Expand all", "site-page-tree") . "</a> | <a href='#' onclick=\"expand_all('my_tree', true); return false;\">" . __("Collapse all", "site-page-tree") . "</a></span>
 			";
 	
-		echo "<style type='text/css'>
-			a.ptLink, a.ptLink:link {
-			color:#993333;
-			text-decoration:none;
-			border:none;
-			}
-			a.ptLink:active  {color:#993333; text-decoration:underline;}
-			a.ptLink:visited {color:#993333; text-decoration:none;}
-			a.ptLink:hover   {color:#993333; text-decoration:underline;}
-			#ptDiv {
-			overflow:hidden;
-			margin-top:5px;
-			}
-			</style>
-			";
-		
 		$icon_folder = apply_filters( 'site_page_tree_icons_url',  WP_PLUGIN_URL . '/site-page-tree/icons/' );
 	
 		echo "
-	<div id='ptDiv'>
+	<div id='site-page-tree' style='overflow:hidden;'>
 	<script type='text/javascript'>
 	
 	var TREE_TPL = {
@@ -124,7 +108,7 @@ class Site_Page_Tree extends WP_Widget {
 	echo json_encode($tree_data);
 	echo ";
 	my_tree = new tree(TREE_DATA, TREE_TPL);
-	divHeightExpanded = document.getElementById('ptDiv').offsetHeight; 
+	divHeightExpanded = document.getElementById('site-page-tree').offsetHeight; 
 	ptDivState = 'expanded'; 
 	";
 	
@@ -154,7 +138,7 @@ class Site_Page_Tree extends WP_Widget {
 				break;
 			}
 		}
-		echo "</script></div>";
+		echo "</script></div><!-- site-page-tree -->";
 		
 	} // page_tree_display
 	
@@ -177,7 +161,7 @@ class Site_Page_Tree extends WP_Widget {
 			$node_data = array($ancestor[1], $ancestor[2]);
 	
 			// get all of the descendants for each ancestor
-			$wp_descendants_obj = get_posts(array('numberposts' => -1, 'orderby' => 'title', 'order'=> 'ASC', 'post_type' => 'page', 'post_status' => 'publish', post_parent => $ancestor[0]));
+			$wp_descendants_obj = get_posts(array('numberposts' => -1, 'orderby' => 'menu_order', 'order'=> 'ASC', 'post_type' => 'page', 'post_status' => 'publish', post_parent => $ancestor[0]));
 	
 			// convert wp descendants object to an array of arrays of IDs and post titles
 			$descendants = array();

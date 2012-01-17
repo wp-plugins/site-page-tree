@@ -3,12 +3,23 @@
 Plugin Name: Site Page Tree
 Description: Adds collapsible tree of pages and sub-pages as navigable hyperlinks
 Author: Brett Mellor, mitcho (Michael Yoshitaka Erlewine)
-Version: 0.3
+Version: 0.4
 Author URI: http://ecs.mit.edu
 */
 
-add_action( 'init', 'site_page_tree_reg_scripts' );
+add_action( 'wp_enqueue_scripts', 'site_page_tree_reg_scripts' );
 add_action( 'widgets_init', 'site_page_tree_load' );
+
+// stylesheet
+add_action('wp_print_styles', 'site_page_tree_stylesheet');
+function site_page_tree_stylesheet() {
+	$styleURL = plugins_url('style.css', __FILE__); 
+	$styleFile = WP_PLUGIN_DIR . '/site-page-tree/style.css';
+	if ( file_exists($styleFile) ) {
+		wp_register_style('site-page-tree-style', "$styleURL");
+		wp_enqueue_style( 'site-page-tree-style');
+		}	
+	} // ci_admin_meta_stylesheet
 
 function site_page_tree_load() {
 	register_widget( 'site_page_tree' );
@@ -63,16 +74,13 @@ class Site_Page_Tree extends WP_Widget {
 		// not sure why this has to be in an array with a redundant wrapper, but... okay... - mitcho
 		$tree_data = apply_filters( 'site_page_tree_data', $tree_data );
 	
-		echo "<span id='site-page-tree-header'>
-			<a href='#' onclick=\"ptSlider('open'); return false;\">" . __("Show", "site-page-tree") . "</a> | <a href='#' onclick=\"ptSlider('close'); return false;\">" . __("Hide", "site-page-tree") . "</a> |
-			<a href='#' onclick=\"expand_all('my_tree'); return false;\">" . __("Expand all", "site-page-tree") . "</a> | <a href='#' onclick=\"expand_all('my_tree', true); return false;\">" . __("Collapse all", "site-page-tree") . "</a></span>
+		echo "<span id='page_tree_show'>show/hide page tree</span><br>
+			<span><a href='#' onclick=\"expand_all('my_tree'); return false;\">" . __("Expand all", "site-page-tree") . "</a> | <a href='#' onclick=\"expand_all('my_tree', true); return false;\">" . __("Collapse all", "site-page-tree") . "</a></span>
 			";
 	
 		$icon_folder = apply_filters( 'site_page_tree_icons_url',  WP_PLUGIN_URL . '/site-page-tree/icons/' );
 	
-		echo "
-	<div id='site-page-tree' style='overflow:hidden;'>
-	<script type='text/javascript'>
+		echo "<script type='text/javascript'>
 	
 	var TREE_TPL = {
 		'target'  : '_self',	// name of the frame links will be opened in
@@ -108,8 +116,6 @@ class Site_Page_Tree extends WP_Widget {
 	echo json_encode($tree_data);
 	echo ";
 	my_tree = new tree(TREE_DATA, TREE_TPL);
-	divHeightExpanded = document.getElementById('site-page-tree').offsetHeight; 
-	ptDivState = 'expanded'; 
 	";
 	
 		// open the branches that lead to the current page, so that we can highlight see and highlight the current page
@@ -138,7 +144,7 @@ class Site_Page_Tree extends WP_Widget {
 				break;
 			}
 		}
-		echo "</script></div><!-- site-page-tree -->";
+		echo "</script>";
 		
 	} // page_tree_display
 	

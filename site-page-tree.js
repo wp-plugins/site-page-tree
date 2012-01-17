@@ -148,35 +148,35 @@ function expand_all(theTree, theDirective) {
 		}
 	} 
 
-function ptSlider(way) {
-	divHeight = document.getElementById('site-page-tree').offsetHeight;
-	if(way=='close')	timer = setInterval("ptClose()",10);
-	else 			timer = setInterval("ptOpen()",10);
+function readCookie(name) {
+	var nameEQ = name + '=';
+	var ca = document.cookie.split(';');
+	for(var i=0;i < ca.length;i++) {
+		var c = ca[i];
+		while (c.charAt(0)==' ') c = c.substring(1,c.length);
+		if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+	}
+	return 'hide';
+}
+
+function pageTreeToggle() {
+	if (readCookie('pageTreeState')=='show')
+		document.cookie = 'pageTreeState=hide; path=/';
+	else
+		document.cookie = 'pageTreeState=show; path=/';
+	// alert(readCookie('pageTreeState'));
 	}
 
-function ptClose() {
-	if(divHeight>0) {
-		divHeight = divHeight - 15;
-		if ( divHeight < 0 ) divHeight=0;
-		document.getElementById('site-page-tree').style.height = divHeight+'px';
-		}
-	else {
-		clearInterval(timer);
-		}
-	}
+// collapsible headings for the sidebar
+jQuery(document).ready(function(){
+  jQuery('#page_tree_show').click(function(){
+	jQuery(this).toggleClass('open').nextUntil('hr').toggle('slow');
+	pageTreeToggle();
+	});
 
-function ptOpen() {
-	if(ptDivState=='collapsed') testHeight = divHeightCollapsed;
-	else testHeight = divHeightExpanded;
+  if(readCookie('pageTreeState')!='show')
+    jQuery('#page_tree_show').nextUntil('hr').hide();
 
-	if(divHeight < testHeight) {
-		divHeight = divHeight + 15;
-		if ( divHeight > testHeight ) divHeight=testHeight;
-		document.getElementById('site-page-tree').style.height = divHeight+'px';
-		}
-	else {
-		clearInterval(timer);
-		document.getElementById('site-page-tree').style.height='';
-		}
-	}
+  // alert(readCookie('pageTreeState'));
 
+});

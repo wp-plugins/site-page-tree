@@ -4,8 +4,8 @@ Author: Brett Mellor, mitcho (Michael Yoshitaka Erlewine
 Author URI: http://ecs.mit.edu/
 Tags: page tree, subpage, site navigation, collapsible, expandable, menu
 Requires at least: 3.1
-Tested up to: 3.1
-Stable tag: 0.4
+Tested up to: 3.5
+Stable tag: 0.5
 
 Sidebar widget displays a navigable tree of pages and subpages with expand/collapse capability. 
 
@@ -40,6 +40,9 @@ Our answer here!
 3. A partially expanded page tree.  The page tree will automatically expand in a limited manner, in order to reveal and highlight the page which is currently being viewed.  
 
 == Changelog ==
+
+= 0.5 =
+* [Code cleanup](https://wordpress.org/support/topic/plugin-site-page-tree-warnings-with-wp_debug)
 
 = 0.4 =
 * show/hide mechanism reimplemented using jquery.  The default state is "hidden," state selection is maintained during session with a javascript cookie
